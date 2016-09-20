@@ -1,0 +1,18 @@
+section {
+  display: inline-block;
+
+}
+
+.left, .right {
+  width: 20%;
+}
+
+.middle {
+  width: 59%;
+}
+
+#register-btn {
+  width: 150px;
+}
+
+
