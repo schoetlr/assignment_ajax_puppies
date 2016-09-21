@@ -118,6 +118,54 @@ var puppyGenerator = {
           alert( "The request is complete!" );
       }
     });
+  },
+
+  removePuppy: function(id, puppy){
+    $.ajax("https://ajax-puppies.herokuapp.com/puppies/" + id + ".json", {
+
+
+      // the data to send (will be converted to a query string)
+      // note that this is an object
+
+      //when converting to jSON string with JSON.stringify it is 
+      //"unprocessable"?
+      
+
+
+      // HTTP verb (aka "Type" of request)
+      type: "DELETE",
+      async: true,
+
+      // the type of data we expect back
+      dataType: "json",
+
+      contentType: "application/json",
+
+      // Success callback to run if the request succeeds.
+      // The response is passed to the function
+      // as a variable, usually called `data` or `json`
+      success: function( json ) {
+          console.log('success');
+          // for example, build a post object onto the body
+          puppy.remove();
+      },
+
+      // Error callback to run if the request fails
+      // (e.g. server returns an error code like 301)
+      // The raw request and any status codes are 
+      // passed to the callback
+      error: function( xhr, status, errorThrown ) {
+          alert( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+      },
+
+      // Complete callback to run regardless of the outcome
+      complete: function( xhr, status ) {
+          console.log( "The request is complete!" );
+      }
+    });
   }
 
 

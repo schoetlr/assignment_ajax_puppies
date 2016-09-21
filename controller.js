@@ -17,6 +17,12 @@ var controller = {
 
   displayBreeds: function(){
     puppyGenerator.getBreeds();
+  },
+
+  destroyPuppy: function(event){
+    var $puppy = $($(event.target).parent());
+    var puppy_id = $puppy.attr("data-id");
+    puppyGenerator.removePuppy(puppy_id, $puppy);
   }
 
 

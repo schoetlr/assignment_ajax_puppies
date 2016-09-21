@@ -17,6 +17,11 @@ var view = {
       event.preventDefault();
     })
 
+    $("#puppies").click(".adopt-link", function(event){
+      event.preventDefault();
+      controller.destroyPuppy(event);
+    })
+
 
   },
 
@@ -35,6 +40,7 @@ var view = {
 
   addPuppy: function(puppy){
     var $puppy = $("<li>" + puppy.name + "</li>");
+    $puppy.attr("data-id", puppy.id);
     $("#puppies").prepend($puppy);
   },
 
@@ -43,12 +49,14 @@ var view = {
     
     json.forEach(function(puppy){
       var $puppy = $("<li>" + puppy.name + "</li>");
+      $puppy.attr("data-id", puppy.id);
+      $puppy.append("<a href='#' class='adopt'>Adopt</a>")
       $("#puppies").append($puppy);
     })
   },
 
-  displayBreeds: function(breeds){
-    // append option to #breeds for each breed
+  removePuppy: function(puppy){
+    console.log("REMOVING");
   }
 
 }
