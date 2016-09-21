@@ -8,13 +8,34 @@ var view = {
     $("#register-btn").click(function(event){
       event.preventDefault();
       var name = $("#name").val();
-      var breed = $("#breed").val();
+      var breed = $("#breeds").find(":selected").val();
+
       controller.registerPuppy(name, breed);
     })
 
     $("#form").submit(function(event){
-      event.preventDefault;
+      event.preventDefault();
     })
+
+
+  },
+
+  breedOptions: function(breeds){
+    breeds.forEach(function(breed){
+      var name = breed.name;
+      var id = breed.id;
+
+      $option = $("<option></option>");
+      $option.text(name);
+      $option.val(id);
+
+      $("#breeds").append($option);
+    })
+  },
+
+  addPuppy: function(puppy){
+    var $puppy = $("<li>" + puppy.name + "</li>");
+    $("#puppies").prepend($puppy);
   },
 
 
@@ -24,6 +45,10 @@ var view = {
       var $puppy = $("<li>" + puppy.name + "</li>");
       $("#puppies").append($puppy);
     })
+  },
+
+  displayBreeds: function(breeds){
+    // append option to #breeds for each breed
   }
 
 }

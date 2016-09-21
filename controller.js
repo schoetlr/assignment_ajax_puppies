@@ -3,6 +3,7 @@ var controller = {
   init: function(){
     view.init();
     controller.displayPuppies();
+    controller.displayBreeds();
   },
 
   displayPuppies: function(){
@@ -12,6 +13,10 @@ var controller = {
   registerPuppy: function(name, breed){
     puppyGenerator.registerPuppy(name, breed);
 
+  },
+
+  displayBreeds: function(){
+    puppyGenerator.getBreeds();
   }
 
 

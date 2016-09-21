@@ -36,6 +36,42 @@ var puppyGenerator = {
     });
   },//end getPuppies
 
+  getBreeds: function(){
+    $.ajax( {
+
+      url: "https://ajax-puppies.herokuapp.com/breeds.json",
+
+      type: "GET",
+
+      // the type of data we expect back
+      dataType : "json",
+
+      // Success callback to run if the request succeeds.
+      // The response is passed to the function
+      // as a variable, usually called `data` or `json`
+      success: function( json ) {
+
+          view.breedOptions(json);
+      },
+
+      // Error callback to run if the request fails
+      // (e.g. server returns an error code like 301)
+      // The raw request and any status codes are 
+      // passed to the callback
+      error: function( xhr, status, errorThrown ) {
+          alert( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+      },
+
+      // Complete callback to run regardless of the outcome
+      complete: function( xhr, status ) {
+          console.log( "The request is complete!" );
+      }
+    });
+  },
+
   registerPuppy: function(name, breed){
     $.ajax("https://ajax-puppies.herokuapp.com/puppies.json", {
 
@@ -45,7 +81,7 @@ var puppyGenerator = {
 
       //when converting to jSON string with JSON.stringify it is 
       //"unprocessable"?
-      data: {name: name, breed: breed},
+      data: JSON.stringify({name: name, breed_id: breed}),
 
 
       // HTTP verb (aka "Type" of request)
@@ -55,7 +91,7 @@ var puppyGenerator = {
       // the type of data we expect back
       dataType: "json",
 
-      contentType: "application/json; charset=utf-8",
+      contentType: "application/json",
 
       // Success callback to run if the request succeeds.
       // The response is passed to the function
@@ -63,7 +99,7 @@ var puppyGenerator = {
       success: function( json ) {
 
           // for example, build a post object onto the body
-          view.displayPuppies(json);
+          view.addPuppy(json);
       },
 
       // Error callback to run if the request fails
